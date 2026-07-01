@@ -1,0 +1,77 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { SITE } from "../../data/site";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { title, summary, role, tags, date, problem, methods, outcome, demoUrl, repoUrl, videoUrl } =
+  project.data;
+---
+
+<Layout title={`${title} — ${SITE.name}`} description={summary}>
+  <article class="mx-auto max-w-3xl px-6 py-16">
+    <a href="/projects" class="text-sm font-medium text-accent hover:underline">&larr; All projects</a>
+
+    <p class="mt-6 text-xs font-medium uppercase tracking-widest text-accent">{role}</p>
+    <h1 class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">{title}</h1>
+    <p class="mt-4 text-fg-muted dark:text-fg-dark-muted">{summary}</p>
+
+    <div class="mt-4 flex flex-wrap gap-2">
+      {tags.map((tag) => (
+        <span class="rounded-full bg-bg-subtle px-3 py-1 text-xs text-fg-muted dark:bg-bg-dark-subtle dark:text-fg-dark-muted">
+          {tag}
+        </span>
+      ))}
+    </div>
+
+    <div class="mt-4 flex flex-wrap gap-4 text-sm">
+      {demoUrl && <a href={demoUrl} class="font-medium text-accent hover:underline">Live demo</a>}
+      {repoUrl && <a href={repoUrl} class="font-medium text-accent hover:underline">Repository</a>}
+      {videoUrl && <a href={videoUrl} class="font-medium text-accent hover:underline">Video</a>}
+    </div>
+
+    {(problem || methods?.length || outcome) && (
+      <div class="mt-10 grid gap-6 rounded-2xl border border-border p-6 sm:grid-cols-3 dark:border-border-dark">
+        {problem && (
+          <div>
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-fg-muted dark:text-fg-dark-muted">
+              Problem
+            </h2>
+            <p class="mt-2 text-sm">{problem}</p>
+          </div>
+        )}
+        {methods?.length > 0 && (
+          <div>
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-fg-muted dark:text-fg-dark-muted">
+              Methods
+            </h2>
+            <ul class="mt-2 space-y-1 text-sm">
+              {methods.map((m: string) => <li>{m}</li>)}
+            </ul>
+          </div>
+        )}
+        {outcome && (
+          <div>
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-fg-muted dark:text-fg-dark-muted">
+              Outcome
+            </h2>
+            <p class="mt-2 text-sm">{outcome}</p>
+          </div>
+        )}
+      </div>
+    )}
+
+    <div class="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-a:text-accent">
+      <Content />
+    </div>
+  </article>
+</Layout>

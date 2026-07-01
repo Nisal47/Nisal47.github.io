@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE } from "../data/site";
+---
+
+<Layout title={`About — ${SITE.name}`}>
+  <section class="mx-auto max-w-3xl px-6 py-16">
+    <h1 class="text-3xl font-semibold tracking-tight">About</h1>
+
+    <div class="mt-8 space-y-6 text-base leading-relaxed text-fg-muted dark:text-fg-dark-muted">
+      <p>
+        Replace this paragraph with your bio: your background, what drew you to HCI, UX
+        research, and XR development, and what you focus on today.
+      </p>
+      <p>
+        Replace this paragraph with your teaching philosophy — how you approach lecturing,
+        what you want students to take away, and any courses you're known for.
+      </p>
+      <p>
+        Replace this paragraph with your research interests and the kinds of problems you
+        like to work on.
+      </p>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,51 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import { SITE } from "../data/site";
+
+const entries = (await getCollection("experience")).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+const dateFormatter = new Intl.DateTimeFormat("en-US", { month: "short", year: "numeric" });
+
+function formatRange(start: Date, end: Date | undefined, current: boolean) {
+  const startLabel = dateFormatter.format(start);
+  if (current) return `${startLabel} — Present`;
+  if (!end) return startLabel;
+  return `${startLabel} — ${dateFormatter.format(end)}`;
+}
+
+const typeLabel: Record<string, string> = {
+  academic: "Academic",
+  industry: "Industry",
+  research: "Research",
+};
+---
+
+<Layout title={`Experience — ${SITE.name}`}>
+  <section class="mx-auto max-w-3xl px-6 py-16">
+    <h1 class="text-3xl font-semibold tracking-tight">Experience</h1>
+
+    <ol class="mt-10 space-y-10 border-l border-border pl-8 dark:border-border-dark">
+      {entries.map((entry) => (
+        <li class="relative">
+          <span class="absolute -left-[2.35rem] top-1.5 h-2.5 w-2.5 rounded-full bg-accent"></span>
+          <p class="text-xs font-medium uppercase tracking-widest text-accent">
+            {typeLabel[entry.data.type]} · {formatRange(entry.data.startDate, entry.data.endDate, entry.data.current)}
+          </p>
+          <h2 class="mt-2 text-lg font-semibold tracking-tight">{entry.data.role}</h2>
+          <p class="text-sm text-fg-muted dark:text-fg-dark-muted">
+            {entry.data.organization}
+            {entry.data.location && ` · ${entry.data.location}`}
+          </p>
+          {entry.data.bullets.length > 0 && (
+            <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-fg-muted dark:text-fg-dark-muted">
+              {entry.data.bullets.map((b) => <li>{b}</li>)}
+            </ul>
+          )}
+        </li>
+      ))}
+    </ol>
+  </section>
+</Layout>

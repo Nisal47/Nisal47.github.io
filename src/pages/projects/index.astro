@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import { SITE } from "../../data/site";
+
+const allProjects = (await getCollection("projects")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Layout title={`Projects — ${SITE.name}`}>
+  <section class="mx-auto max-w-5xl px-6 py-16">
+    <h1 class="text-3xl font-semibold tracking-tight">Projects</h1>
+    <p class="mt-3 max-w-2xl text-fg-muted dark:text-fg-dark-muted">
+      Case studies from UX research, XR development, and HCI work.
+    </p>
+
+    <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      {allProjects.map((project) => (
+        <ProjectCard
+          slug={project.id}
+          title={project.data.title}
+          summary={project.data.summary}
+          role={project.data.role}
+          tags={project.data.tags}
+        />
+      ))}
+    </div>
+  </section>
+</Layout>
