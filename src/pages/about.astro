@@ -5,9 +5,21 @@ import { SITE } from "../data/site";
 
 <Layout title={`About — ${SITE.name}`}>
   <section class="mx-auto max-w-3xl px-6 py-16">
-    <h1 class="text-3xl font-semibold tracking-tight">About</h1>
+    <div class="flex flex-col items-start gap-8 sm:flex-row sm:items-center">
+      <img
+        src="/images/profile/headshot.jpg"
+        alt={SITE.name}
+        class="h-40 w-40 flex-shrink-0 rounded-full border border-border object-cover dark:border-border-dark sm:h-48 sm:w-48"
+      />
+      <div>
+        <h1 class="text-3xl font-semibold tracking-tight">About</h1>
+        <p class="mt-2 text-sm font-medium uppercase tracking-widest text-accent">
+          {SITE.roles.join(" · ")}
+        </p>
+      </div>
+    </div>
 
-    <div class="mt-8 space-y-6 text-base leading-relaxed text-fg-muted dark:text-fg-dark-muted">
+    <div class="mt-10 space-y-6 text-base leading-relaxed text-fg-muted dark:text-fg-dark-muted">
       <p>
         Replace this paragraph with your bio: your background, what drew you to HCI, UX
         research, and XR development, and what you focus on today.
