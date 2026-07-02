@@ -20,6 +20,7 @@ const projects = defineCollection({
     date: z.coerce.date(),
     context: z.string().optional(),
     supervisors: z.array(z.string()).default([]),
+    mediaNote: z.string().optional(),
     featured: z.boolean().default(false),
     problem: z.array(z.string()).default([]),
     methods: z.array(z.string()).default([]),
