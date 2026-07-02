@@ -1,31 +1,67 @@
 export const EDUCATION = [
   {
-    degree: "Replace with your degree, e.g. Ph.D. in Human-Computer Interaction",
-    institution: "Replace with institution name",
-    year: "Replace with year",
+    degree: "Ph.D. in Computer Science",
+    institution: "Victoria University of Wellington, New Zealand",
+    year: "2021 – 2025",
   },
   {
-    degree: "Replace with your degree, e.g. M.Sc. in Computer Science",
-    institution: "Replace with institution name",
-    year: "Replace with year",
+    degree: "B.Sc. (Special) in Computer Science, First Class Honours",
+    institution: "University of Kelaniya, Sri Lanka",
+    year: "2013 – 2017",
   },
 ];
 
 export const SKILLS = [
   {
-    category: "UX Research",
-    items: ["User interviews", "Usability testing", "Heuristic evaluation", "Survey design"],
+    category: "VR & Mixed Reality Development",
+    items: [
+      "Unity",
+      "C#",
+      "Microsoft Mixed Reality Toolkit",
+      "SteamVR",
+      "XR Interaction Toolkit",
+      "Oculus Integration",
+      "StretchSense motion capture gloves",
+      "Oculus Quest 2/Pro",
+      "HTC VIVE Pro",
+      "Vuforia",
+    ],
   },
   {
-    category: "XR Development",
-    items: ["Unity", "Unreal Engine", "OpenXR", "ARKit/ARCore", "WebXR"],
+    category: "HCI & UX",
+    items: [
+      "Human-Computer Interaction",
+      "User Experience (UX)",
+      "Cognitive Walkthrough",
+      "Heuristic Evaluation",
+      "Usability Studies",
+      "Figma",
+    ],
   },
   {
-    category: "HCI & Design",
-    items: ["Accessibility (WCAG)", "Design systems", "Prototyping", "Interaction design"],
+    category: "Web Development",
+    items: ["ASP.NET (MVC)", "HTML", "CSS", "JavaScript", "PHP", "Laravel"],
   },
   {
-    category: "Tools",
-    items: ["Figma", "React", "Three.js", "Python"],
+    category: "Databases",
+    items: ["MS SQL", "MySQL", "Oracle"],
+  },
+  {
+    category: "Other Languages & Tools",
+    items: [
+      "C",
+      "C++ with OpenGL",
+      "VB.NET",
+      "Java",
+      "Python",
+      "PL/SQL",
+      "Git/GitHub/GitLab",
+      "MATLAB",
+      "UML",
+    ],
+  },
+  {
+    category: "Teaching Delivery",
+    items: ["MS Teams", "Zoom", "Moodle (LMS)", "Joomla", "Large in-person and online cohorts"],
   },
 ];
