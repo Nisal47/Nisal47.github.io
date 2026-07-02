@@ -1,8 +1,9 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import type { Mesh } from "three";
 
-const ACCENT = "#7c5cff";
+const ACCENT_LIGHT = "#5b3fe0";
+const ACCENT_DARK = "#9c89f0";
 
 function usePrefersReducedMotion() {
   const [reduced] = useState(
@@ -13,7 +14,24 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
-function DistortedForm({ reduced }: { reduced: boolean }) {
+function useAccentColor() {
+  const [color, setColor] = useState(ACCENT_LIGHT);
+
+  useEffect(() => {
+    const update = () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      setColor(isDark ? ACCENT_DARK : ACCENT_LIGHT);
+    };
+    update();
+    const observer = new MutationObserver(update);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
+
+  return color;
+}
+
+function DistortedForm({ reduced, color }: { reduced: boolean; color: string }) {
   const meshRef = useRef<Mesh>(null);
   const pointer = useRef({ x: 0, y: 0 });
 
@@ -38,7 +56,7 @@ function DistortedForm({ reduced }: { reduced: boolean }) {
     <mesh ref={meshRef}>
       <icosahedronGeometry args={[1.6, 1]} />
       <meshStandardMaterial
-        color={ACCENT}
+        color={color}
         wireframe
         roughness={0.4}
         metalness={0.1}
@@ -49,6 +67,7 @@ function DistortedForm({ reduced }: { reduced: boolean }) {
 
 export default function HeroCanvas() {
   const reduced = usePrefersReducedMotion();
+  const color = useAccentColor();
   const dpr = useMemo(() => [1, 2] as [number, number], []);
 
   return (
@@ -60,8 +79,8 @@ export default function HeroCanvas() {
       aria-hidden="true"
     >
       <ambientLight intensity={0.6} />
-      <pointLight position={[5, 5, 5]} intensity={40} color={ACCENT} />
-      <DistortedForm reduced={reduced} />
+      <pointLight position={[5, 5, 5]} intensity={40} color={color} />
+      <DistortedForm reduced={reduced} color={color} />
     </Canvas>
   );
 }

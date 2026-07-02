@@ -30,8 +30,8 @@ const typeLabel: Record<string, string> = {
     <ol class="mt-10 space-y-10 border-l border-border pl-8 dark:border-border-dark">
       {entries.map((entry) => (
         <li class="relative">
-          <span class="absolute -left-[2.35rem] top-1.5 h-2.5 w-2.5 rounded-full bg-accent"></span>
-          <p class="text-xs font-medium uppercase tracking-widest text-accent">
+          <span class="absolute -left-[2.35rem] top-1.5 h-2.5 w-2.5 rounded-full bg-accent dark:bg-accent-light"></span>
+          <p class="text-xs font-medium uppercase tracking-widest text-accent dark:text-accent-light">
             {typeLabel[entry.data.type]} · {formatRange(entry.data.startDate, entry.data.endDate, entry.data.current)}
           </p>
           <h2 class="mt-2 text-lg font-semibold tracking-tight">{entry.data.role}</h2>

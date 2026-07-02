@@ -31,8 +31,8 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
             href={link.href}
             aria-current={isActive ? "page" : undefined}
             class:list={[
-              "text-sm transition hover:text-accent",
-              isActive ? "font-medium text-accent" : "text-fg-muted dark:text-fg-dark-muted",
+              "text-sm transition hover:text-accent dark:hover:text-accent-light",
+              isActive ? "font-medium text-accent dark:text-accent-light" : "text-fg-muted dark:text-fg-dark-muted",
             ]}
           >
             {link.label}
@@ -45,7 +45,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 
   <div id="nav-mobile" class="hidden flex-col gap-1 border-t border-border px-6 pb-4 md:hidden dark:border-border-dark">
     {NAV_LINKS.map((link) => (
-      <a href={link.href} class="rounded px-2 py-2 text-sm text-fg-muted hover:bg-bg-subtle hover:text-accent dark:text-fg-dark-muted dark:hover:bg-bg-dark-subtle">
+      <a href={link.href} class="rounded px-2 py-2 text-sm text-fg-muted hover:bg-bg-subtle hover:text-accent dark:text-fg-dark-muted dark:hover:bg-bg-dark-subtle dark:hover:text-accent-light">
         {link.label}
       </a>
     ))}

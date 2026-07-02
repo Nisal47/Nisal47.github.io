@@ -13,7 +13,7 @@ const { slug, title, summary, role, tags, cover } = Astro.props;
 
 <a
   href={`/projects/${slug}`}
-  class="group block overflow-hidden rounded-2xl border border-border transition hover:border-accent hover:shadow-sm dark:border-border-dark"
+  class="group block overflow-hidden rounded-2xl border border-border transition hover:border-accent hover:shadow-sm dark:border-border-dark dark:hover:border-accent-light"
 >
   {cover && (
     <img
@@ -24,8 +24,8 @@ const { slug, title, summary, role, tags, cover } = Astro.props;
     />
   )}
   <div class="p-6">
-    <p class="text-xs font-medium uppercase tracking-widest text-accent">{role}</p>
-    <h3 class="mt-3 text-lg font-semibold tracking-tight group-hover:text-accent">
+    <p class="text-xs font-medium uppercase tracking-widest text-accent dark:text-accent-light">{role}</p>
+    <h3 class="mt-3 text-lg font-semibold tracking-tight group-hover:text-accent dark:group-hover:text-accent-light">
       {title}
     </h3>
     <p class="mt-2 text-sm text-fg-muted dark:text-fg-dark-muted">{summary}</p>

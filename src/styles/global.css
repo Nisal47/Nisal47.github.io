@@ -18,9 +18,15 @@
   --color-fg-dark-muted: #9aa0ae;
   --color-border-dark: #232733;
 
-  --color-accent: #7c5cff;
-  --color-accent-strong: #6a45ff;
-  --color-accent-soft: #ede9ff;
+  --color-accent: #5b3fe0;
+  --color-accent-strong: #4c30c4;
+  --color-accent-soft: #e1dbfa;
+  /* Lighter tint for text/links/borders on dark backgrounds — the base
+     accent only hits ~3:1 against --color-bg-dark, below WCAG AA (4.5:1
+     text / 3:1 UI). This tint clears ~6.7:1. Use for foreground accent
+     color in dark mode; keep --color-accent for solid-fill buttons where
+     white text sits on top (that already passes at ~6.5:1). */
+  --color-accent-light: #9c89f0;
 }
 
 @layer base {

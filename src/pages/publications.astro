@@ -23,12 +23,12 @@ const typeLabel: Record<string, string> = {
     <ul class="mt-10 divide-y divide-border dark:divide-border-dark">
       {publications.map((pub) => (
         <li class="py-5">
-          <p class="text-xs font-medium uppercase tracking-widest text-accent">
+          <p class="text-xs font-medium uppercase tracking-widest text-accent dark:text-accent-light">
             {typeLabel[pub.data.type]} · {pub.data.year}
           </p>
           <h2 class="mt-2 text-base font-semibold tracking-tight">
             {pub.data.link ? (
-              <a href={pub.data.link} target="_blank" rel="noreferrer" class="hover:text-accent">
+              <a href={pub.data.link} target="_blank" rel="noreferrer" class="hover:text-accent dark:hover:text-accent-light">
                 {pub.data.title}
               </a>
             ) : (
