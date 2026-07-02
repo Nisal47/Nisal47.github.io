@@ -9,11 +9,21 @@ const projects = defineCollection({
     role: z.string(),
     tags: z.array(z.string()).default([]),
     cover: z.string().optional(),
+    gallery: z
+      .array(
+        z.object({
+          src: z.string(),
+          alt: z.string(),
+        })
+      )
+      .default([]),
     date: z.coerce.date(),
+    context: z.string().optional(),
+    supervisors: z.array(z.string()).default([]),
     featured: z.boolean().default(false),
-    problem: z.string().optional(),
+    problem: z.array(z.string()).default([]),
     methods: z.array(z.string()).default([]),
-    outcome: z.string().optional(),
+    outcome: z.array(z.string()).default([]),
     demoUrl: z.string().optional(),
     repoUrl: z.string().optional(),
     videoUrl: z.string().optional(),

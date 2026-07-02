@@ -5,25 +5,36 @@ interface Props {
   summary: string;
   role: string;
   tags: string[];
+  cover?: string;
 }
 
-const { slug, title, summary, role, tags } = Astro.props;
+const { slug, title, summary, role, tags, cover } = Astro.props;
 ---
 
 <a
   href={`/projects/${slug}`}
-  class="group block rounded-2xl border border-border p-6 transition hover:border-accent hover:shadow-sm dark:border-border-dark"
+  class="group block overflow-hidden rounded-2xl border border-border transition hover:border-accent hover:shadow-sm dark:border-border-dark"
 >
-  <p class="text-xs font-medium uppercase tracking-widest text-accent">{role}</p>
-  <h3 class="mt-3 text-lg font-semibold tracking-tight group-hover:text-accent">
-    {title}
-  </h3>
-  <p class="mt-2 text-sm text-fg-muted dark:text-fg-dark-muted">{summary}</p>
-  <div class="mt-4 flex flex-wrap gap-2">
-    {tags.map((tag) => (
-      <span class="rounded-full bg-bg-subtle px-3 py-1 text-xs text-fg-muted dark:bg-bg-dark-subtle dark:text-fg-dark-muted">
-        {tag}
-      </span>
-    ))}
+  {cover && (
+    <img
+      src={cover}
+      alt={title}
+      loading="lazy"
+      class="aspect-video w-full object-cover"
+    />
+  )}
+  <div class="p-6">
+    <p class="text-xs font-medium uppercase tracking-widest text-accent">{role}</p>
+    <h3 class="mt-3 text-lg font-semibold tracking-tight group-hover:text-accent">
+      {title}
+    </h3>
+    <p class="mt-2 text-sm text-fg-muted dark:text-fg-dark-muted">{summary}</p>
+    <div class="mt-4 flex flex-wrap gap-2">
+      {tags.map((tag) => (
+        <span class="rounded-full bg-bg-subtle px-3 py-1 text-xs text-fg-muted dark:bg-bg-dark-subtle dark:text-fg-dark-muted">
+          {tag}
+        </span>
+      ))}
+    </div>
   </div>
 </a>

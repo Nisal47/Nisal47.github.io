@@ -5,12 +5,16 @@ role: "UX Researcher & Designer"
 tags: ["Accessibility", "UX Research", "Design Systems"]
 date: 2024-02-10
 featured: false
-problem: "Replace with the real problem statement."
+problem:
+  - "Replace with a real problem bullet"
+  - "Replace with another real problem bullet"
 methods:
   - "Heuristic evaluation against WCAG 2.2"
   - "Screen-reader user testing"
   - "Design system component audit"
-outcome: "Replace with measured outcome."
+outcome:
+  - "Replace with a real measured outcome bullet"
+  - "Replace with another real measured outcome bullet"
 demoUrl: ""
 repoUrl: ""
 videoUrl: ""
