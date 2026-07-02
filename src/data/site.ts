@@ -1,11 +1,11 @@
 export const SITE = {
   name: "Nisal Udawatta",
-  title: "Nisal Udawatta — Lecturer, UX Researcher & XR Developer",
+  title: "Nisal Udawatta — Lecturer & XR Developer",
   description:
-    "Lecturer, UX researcher, XR developer, and HCI specialist. Case studies in immersive experience design, research-driven UX, and applied human-computer interaction.",
+    "Lecturer, XR developer, and HCI specialist. Case studies in immersive experience design and applied human-computer interaction.",
   url: "https://Nisal47.github.io",
   email: "nisalmudawatta@gmail.com",
-  roles: ["Lecturer", "UX Researcher", "XR Developer", "HCI Specialist"],
+  roles: ["Lecturer", "XR Developer", "HCI Specialist"],
   socials: {
     github: "https://github.com/Nisal47",
     linkedin: "",
