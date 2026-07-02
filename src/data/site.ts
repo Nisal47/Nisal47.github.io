@@ -7,8 +7,8 @@ export const SITE = {
   email: "nisalmudawatta@gmail.com",
   roles: ["Lecturer", "XR Developer", "HCI Specialist"],
   socials: {
-    github: "https://github.com/Nisal47",
-    linkedin: "",
+    github: "",
+    linkedin: "https://www.linkedin.com/in/nisal-udawatta/",
     scholar: "",
   },
 };
