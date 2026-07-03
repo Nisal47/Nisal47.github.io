@@ -42,6 +42,7 @@ const experience = defineCollection({
     current: z.boolean().default(false),
     location: z.string().optional(),
     bullets: z.array(z.string()).default([]),
+    skills: z.array(z.string()).default([]),
     order: z.number().default(0),
   }),
 });

@@ -7,6 +7,7 @@ endDate: 2016-07-01
 current: false
 location: "Sri Lanka"
 order: 6
+skills: ["ASP.NET MVC", "C#", "Web Development", "Requirements Analysis", "Testing & Debugging", "Insurance Claims System"]
 bullets:
   - "Analysed client needs and designed a web application for a Sri Lankan insurance broker to manage claims"
   - "Built the application with ASP.NET MVC, Entity Framework, and MS SQL"

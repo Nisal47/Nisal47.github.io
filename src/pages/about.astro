@@ -1,6 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { SITE } from "../data/site";
+
+const TOP_SKILLS = [
+  "Human-Computer Interaction (HCI)",
+  "UX Research & Design",
+  "XR / Immersive Technologies",
+  "Software Development (C# / Unity)",
+  "Teaching & Research",
+];
 ---
 
 <Layout title={`About — ${SITE.name}`}>
@@ -29,6 +37,20 @@ import { SITE } from "../data/site";
         education. What I enjoy most is bringing different technologies together to solve
         problems that actually matter in people's lives.
       </p>
+    </div>
+
+    <div class="mt-16">
+      <h2 class="text-xs font-semibold uppercase tracking-widest text-fg-muted dark:text-fg-dark-muted">
+        Top Skills
+      </h2>
+      <ul class="mt-4 grid gap-4 sm:grid-cols-2">
+        {TOP_SKILLS.map((skill, i) => (
+          <li class="flex items-center gap-3 rounded-2xl border border-border p-4 dark:border-border-dark">
+            <span class="text-sm font-semibold text-accent dark:text-accent-light">0{i + 1}</span>
+            <span class="text-sm font-medium">{skill}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 </Layout>

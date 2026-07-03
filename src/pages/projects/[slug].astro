@@ -118,21 +118,24 @@ const {
 
     {gallery.length > 0 && (
       <div class="mt-10 grid gap-4 sm:grid-cols-2">
-        {gallery.map((item) => (
-          <figure>
-            <img
-              src={item.src}
-              alt={item.alt}
-              loading="lazy"
-              class="w-full rounded-2xl border border-border object-cover dark:border-border-dark"
-            />
-            {item.alt && (
-              <figcaption class="mt-2 text-xs text-fg-muted dark:text-fg-dark-muted">
-                {item.alt}
-              </figcaption>
-            )}
-          </figure>
-        ))}
+        {gallery.map((item, i) => {
+          const isLastOdd = gallery.length % 2 !== 0 && i === gallery.length - 1;
+          return (
+            <figure class:list={[isLastOdd && "sm:col-span-2"]}>
+              <img
+                src={item.src}
+                alt={item.alt}
+                loading="lazy"
+                class="w-full rounded-2xl border border-border object-cover dark:border-border-dark"
+              />
+              {item.alt && (
+                <figcaption class="mt-2 text-xs text-fg-muted dark:text-fg-dark-muted">
+                  {item.alt}
+                </figcaption>
+              )}
+            </figure>
+          );
+        })}
       </div>
     )}
   </article>

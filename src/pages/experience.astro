@@ -44,6 +44,15 @@ const typeLabel: Record<string, string> = {
               {entry.data.bullets.map((b) => <li>{b}</li>)}
             </ul>
           )}
+          {entry.data.skills.length > 0 && (
+            <div class="mt-4 flex flex-wrap gap-2">
+              {entry.data.skills.map((skill) => (
+                <span class="rounded-full bg-bg-subtle px-3 py-1 text-xs text-fg-muted dark:bg-bg-dark-subtle dark:text-fg-dark-muted">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          )}
         </li>
       ))}
     </ol>
