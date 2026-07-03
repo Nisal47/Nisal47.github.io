@@ -11,35 +11,38 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
       {SITE.name}
     </a>
 
-    <button
-      id="nav-toggle"
-      type="button"
-      aria-label="Toggle menu"
-      aria-expanded="false"
-      class="flex h-9 w-9 items-center justify-center rounded-full border border-border md:hidden dark:border-border-dark"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4.5 w-4.5">
-        <path d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-    </button>
+    <div class="flex items-center gap-3">
+      <div class="hidden items-center gap-6 md:flex">
+        {NAV_LINKS.map((link) => {
+          const isActive = (link.href.replace(/\/$/, "") || "/") === currentPath;
+          return (
+            <a
+              href={link.href}
+              aria-current={isActive ? "page" : undefined}
+              class:list={[
+                "text-sm transition hover:text-accent dark:hover:text-accent-light",
+                isActive ? "font-medium text-accent dark:text-accent-light" : "text-fg-muted dark:text-fg-dark-muted",
+              ]}
+            >
+              {link.label}
+            </a>
+          );
+        })}
+      </div>
 
-    <div class="hidden items-center gap-6 md:flex">
-      {NAV_LINKS.map((link) => {
-        const isActive = (link.href.replace(/\/$/, "") || "/") === currentPath;
-        return (
-          <a
-            href={link.href}
-            aria-current={isActive ? "page" : undefined}
-            class:list={[
-              "text-sm transition hover:text-accent dark:hover:text-accent-light",
-              isActive ? "font-medium text-accent dark:text-accent-light" : "text-fg-muted dark:text-fg-dark-muted",
-            ]}
-          >
-            {link.label}
-          </a>
-        );
-      })}
       <ThemeToggle />
+
+      <button
+        id="nav-toggle"
+        type="button"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        class="flex h-9 w-9 items-center justify-center rounded-full border border-border md:hidden dark:border-border-dark"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4.5 w-4.5">
+          <path d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
     </div>
   </nav>
 
@@ -49,9 +52,6 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
         {link.label}
       </a>
     ))}
-    <div class="px-2 pt-2">
-      <ThemeToggle />
-    </div>
   </div>
 </header>
 

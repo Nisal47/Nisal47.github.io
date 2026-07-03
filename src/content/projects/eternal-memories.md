@@ -5,7 +5,7 @@ role: "XR Developer, Team XR Minds"
 tags: ["XR", "VR", "AR", "Unity", "Hand Tracking", "HCI", "Healthcare", "Hackathon", "Multiplayer"]
 date: 2023-02-01
 context: "XR Workshop 2023 (hackathon), HIT Lab NZ, University of Canterbury, in collaboration with the Empathic Computing Lab (University of Auckland) and the HCI Group (Victoria University of Wellington)"
-featured: true
+featured: false
 cover: "/images/projects/eternal-memories/cover.jpg"
 mediaNote: "Cover image is a stylised illustration, not the real application. See the demo video for actual footage."
 videoUrl: "https://youtu.be/3dzWcEB60n8"

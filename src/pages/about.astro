@@ -44,9 +44,9 @@ const TOP_SKILLS = [
         Top Skills
       </h2>
       <ul class="mt-4 grid gap-4 sm:grid-cols-2">
-        {TOP_SKILLS.map((skill, i) => (
+        {TOP_SKILLS.map((skill) => (
           <li class="flex items-center gap-3 rounded-2xl border border-border p-4 dark:border-border-dark">
-            <span class="text-sm font-semibold text-accent dark:text-accent-light">0{i + 1}</span>
+            <span class="h-2 w-2 flex-shrink-0 rounded-full bg-accent dark:bg-accent-light"></span>
             <span class="text-sm font-medium">{skill}</span>
           </li>
         ))}
