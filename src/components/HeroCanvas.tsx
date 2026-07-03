@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import type { Mesh } from "three";
+import type { Group, Mesh } from "three";
 
 const ACCENT_LIGHT = "#5b3fe0";
 const ACCENT_DARK = "#9c89f0";
@@ -32,36 +32,39 @@ function useAccentColor() {
 }
 
 function DistortedForm({ reduced, color }: { reduced: boolean; color: string }) {
-  const meshRef = useRef<Mesh>(null);
-  const pointer = useRef({ x: 0, y: 0 });
+  // Mouse tilt and auto-spin are applied to separate nodes so the
+  // unbounded auto-spin doesn't fight the bounded mouse-tracking lerp
+  // (both were previously accumulating on the same rotation, which made
+  // the tilt drift out of sync with the actual pointer position).
+  const tiltRef = useRef<Group>(null);
+  const spinRef = useRef<Mesh>(null);
 
   useFrame((state, delta) => {
-    if (!meshRef.current) return;
-
-    if (!reduced) {
-      meshRef.current.rotation.x += delta * 0.08;
-      meshRef.current.rotation.y += delta * 0.12;
+    if (spinRef.current && !reduced) {
+      spinRef.current.rotation.x += delta * 0.08;
+      spinRef.current.rotation.y += delta * 0.12;
     }
 
-    const targetX = pointer.current.y * 0.3;
-    const targetY = pointer.current.x * 0.3;
-    meshRef.current.rotation.x += (targetX - meshRef.current.rotation.x) * 0.02;
-    meshRef.current.rotation.y += (targetY - meshRef.current.rotation.y) * 0.02;
-
-    pointer.current.x = state.pointer.x;
-    pointer.current.y = state.pointer.y;
+    if (tiltRef.current) {
+      const targetX = -state.pointer.y * 0.3;
+      const targetY = state.pointer.x * 0.3;
+      tiltRef.current.rotation.x += (targetX - tiltRef.current.rotation.x) * 0.05;
+      tiltRef.current.rotation.y += (targetY - tiltRef.current.rotation.y) * 0.05;
+    }
   });
 
   return (
-    <mesh ref={meshRef}>
-      <icosahedronGeometry args={[1.6, 1]} />
-      <meshStandardMaterial
-        color={color}
-        wireframe
-        roughness={0.4}
-        metalness={0.1}
-      />
-    </mesh>
+    <group ref={tiltRef}>
+      <mesh ref={spinRef}>
+        <icosahedronGeometry args={[1.6, 1]} />
+        <meshStandardMaterial
+          color={color}
+          wireframe
+          roughness={0.4}
+          metalness={0.1}
+        />
+      </mesh>
+    </group>
   );
 }
 
