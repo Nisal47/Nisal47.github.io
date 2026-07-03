@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import type { Group, Mesh } from "three";
 
 const ACCENT_LIGHT = "#5b3fe0";
@@ -38,16 +38,37 @@ function DistortedForm({ reduced, color }: { reduced: boolean; color: string }) 
   // the tilt drift out of sync with the actual pointer position).
   const tiltRef = useRef<Group>(null);
   const spinRef = useRef<Mesh>(null);
+  const hovered = useRef(false);
+  const { gl } = useThree();
+
+  useEffect(() => {
+    const el = gl.domElement;
+    const onEnter = () => {
+      hovered.current = true;
+    };
+    const onLeave = () => {
+      hovered.current = false;
+    };
+    el.addEventListener("pointerenter", onEnter);
+    el.addEventListener("pointerleave", onLeave);
+    return () => {
+      el.removeEventListener("pointerenter", onEnter);
+      el.removeEventListener("pointerleave", onLeave);
+    };
+  }, [gl]);
 
   useFrame((state, delta) => {
-    if (spinRef.current && !reduced) {
+    if (!reduced && spinRef.current) {
       spinRef.current.rotation.x += delta * 0.08;
       spinRef.current.rotation.y += delta * 0.12;
     }
 
-    if (tiltRef.current) {
-      const targetX = -state.pointer.y * 0.3;
-      const targetY = state.pointer.x * 0.3;
+    // Respect reduced-motion for the mouse-tilt too, and ease back to a
+    // neutral pose once the pointer leaves the canvas rather than staying
+    // locked at wherever the cursor last was.
+    if (tiltRef.current && !reduced) {
+      const targetX = hovered.current ? -state.pointer.y * 0.3 : 0;
+      const targetY = hovered.current ? state.pointer.x * 0.3 : 0;
       tiltRef.current.rotation.x += (targetX - tiltRef.current.rotation.x) * 0.05;
       tiltRef.current.rotation.y += (targetY - tiltRef.current.rotation.y) * 0.05;
     }
