@@ -10,14 +10,16 @@ const typeLabel: Record<string, string> = {
   talk: "Talk",
   poster: "Poster",
   workshop: "Workshop",
+  "doctoral-consortium": "Doctoral Consortium",
+  award: "Award",
 };
 ---
 
-<Layout title={`Publications — ${SITE.name}`}>
+<Layout title={`Research — ${SITE.name}`}>
   <section class="mx-auto max-w-3xl px-6 py-16">
-    <h1 class="text-3xl font-semibold tracking-tight">Publications</h1>
+    <h1 class="text-3xl font-semibold tracking-tight">Research</h1>
     <p class="mt-3 text-fg-muted dark:text-fg-dark-muted">
-      Papers, talks, and other research outputs.
+      Papers, talks, awards, and other research outputs.
     </p>
 
     <ul class="mt-10 divide-y divide-border dark:divide-border-dark">
@@ -36,7 +38,7 @@ const typeLabel: Record<string, string> = {
             )}
           </h2>
           <p class="mt-1 text-sm text-fg-muted dark:text-fg-dark-muted">
-            {pub.data.authors} — {pub.data.venue}
+            {pub.data.authors ? `${pub.data.authors}, ${pub.data.venue}` : pub.data.venue}
           </p>
         </li>
       ))}
