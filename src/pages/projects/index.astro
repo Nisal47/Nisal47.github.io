@@ -7,6 +7,9 @@ import { SITE } from "../../data/site";
 const allProjects = (await getCollection("projects")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
+
+const mainProjects = allProjects.filter((p) => !p.data.concept);
+const conceptProjects = allProjects.filter((p) => p.data.concept);
 ---
 
 <Layout title={`Projects — ${SITE.name}`}>
@@ -17,7 +20,7 @@ const allProjects = (await getCollection("projects")).sort(
     </p>
 
     <div class="mt-10 grid gap-6 sm:grid-cols-2">
-      {allProjects.map((project) => (
+      {mainProjects.map((project) => (
         <ProjectCard
           slug={project.id}
           title={project.data.title}
@@ -28,5 +31,28 @@ const allProjects = (await getCollection("projects")).sort(
         />
       ))}
     </div>
+
+    {conceptProjects.length > 0 && (
+      <div class="mt-20">
+        <div class="border-t border-border pt-10 dark:border-border-dark">
+          <h2 class="text-xl font-semibold tracking-tight">Concept Designs</h2>
+          <p class="mt-2 max-w-2xl text-sm text-fg-muted dark:text-fg-dark-muted">
+            Quick explorations and design tests, not part of the core portfolio.
+          </p>
+          <div class="mt-6 grid gap-6 sm:grid-cols-2">
+            {conceptProjects.map((project) => (
+              <ProjectCard
+                slug={project.id}
+                title={project.data.title}
+                summary={project.data.summary}
+                role={project.data.role}
+                tags={project.data.tags}
+                cover={project.data.cover}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    )}
   </section>
 </Layout>

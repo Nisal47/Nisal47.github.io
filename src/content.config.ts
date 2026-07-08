@@ -22,6 +22,7 @@ const projects = defineCollection({
     supervisors: z.array(z.string()).default([]),
     mediaNote: z.string().optional(),
     featured: z.boolean().default(false),
+    concept: z.boolean().default(false),
     problem: z.array(z.string()).default([]),
     methods: z.array(z.string()).default([]),
     outcome: z.array(z.string()).default([]),
