@@ -55,9 +55,27 @@ const {
       ))}
     </div>
 
-    <div class="mt-4 flex flex-wrap gap-4 text-sm">
-      {demoUrl && <a href={demoUrl} class="font-medium text-accent hover:underline dark:text-accent-light">Live demo</a>}
-      {repoUrl && <a href={repoUrl} class="font-medium text-accent hover:underline dark:text-accent-light">Repository</a>}
+    <div class="mt-6 flex flex-wrap gap-4">
+      {demoUrl && (
+        <a
+          href={demoUrl}
+          target="_blank"
+          rel="noreferrer"
+          class="rounded-full bg-accent px-6 py-3 text-sm font-medium text-white transition hover:bg-accent-strong"
+        >
+          Live demo
+        </a>
+      )}
+      {repoUrl && (
+        <a
+          href={repoUrl}
+          target="_blank"
+          rel="noreferrer"
+          class="rounded-full border border-border px-6 py-3 text-sm font-medium transition hover:border-accent hover:text-accent dark:border-border-dark dark:hover:border-accent-light dark:hover:text-accent-light"
+        >
+          Repository
+        </a>
+      )}
     </div>
 
     {cover && (

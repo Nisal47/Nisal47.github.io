@@ -7,6 +7,7 @@ date: 2026-07-08
 context: "Solo design exploration, built with Figma Make (AI-assisted design tool)"
 featured: false
 concept: true
+demoUrl: "https://www.figma.com/make/8mv9behrD9v6NIFAtaXCdh/Excavator-Control-App-Design?fullscreen=1&t=BdrE0PXSExS1hp6a-1&code-node-id=0-9"
 cover: "/images/projects/excavator-control-app/camera-view.jpg"
 gallery:
   - src: "/images/projects/excavator-control-app/control.jpg"
